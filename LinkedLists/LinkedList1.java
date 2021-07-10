@@ -59,32 +59,37 @@ class LinkedList1 {
 		}
 	}
 
-	static void linkDelete(Node head, int key) {
+	static Node linkDelete(Node head, int key) {
 
 		Node ptr = head;
 		Node prev = null;
 		
+		System.out.println("Inside");
+		print(ptr);
+
+		System.out.println("-----"+ptr.data+"-------"+key+"------");
+
 		if(ptr != null && ptr.data == key){
 			head = ptr.next;
-			return;
+			return head;
 		}
 
-		while (ptr != null) {
-			if(ptr.data == searchElement){
-				searchFlag = 1;
-				break;
-			}
-			else{
-				ptr = ptr.next;
-			}
+		while (ptr != null && ptr.data != key) {
+			prev = ptr;
+			ptr = ptr.next;
 		}
 
-		if(searchFlag == 0){
-			System.out.println("Not Found");
-		}else{
-			System.out.println("Found");
+		if(ptr == null){
+			return head;
 		}
+
+		prev.next = ptr.next;
+		System.out.println("Inside");
+		print(head);
+		return head;
+
 	}
+
 	static Node addNodeAtEnd(Node head, int data) {
 
 		Node current = head;
@@ -121,7 +126,6 @@ class LinkedList1 {
 
 	public static void main(String args[]) {
 
-		System.out.println("Hello World");
 		// Node head = null;
 		Node first = new Node();
 		Node second = new Node();
@@ -139,7 +143,13 @@ class LinkedList1 {
 		head = addNodeAtStart(head, 0);
 		print(head);
 
-		System.out.println("Length is"+linkLenght(head));
+		System.out.println("Length is "+linkLenght(head));
+
+		linkSearch(head);
+
+		head = linkDelete(head, 0);
+
+		print(head);
 
 		linkSearch(head);
 		
