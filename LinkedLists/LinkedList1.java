@@ -59,6 +59,23 @@ class LinkedList1 {
 		}
 	}
 
+	static Node linkShare(Node head) {
+
+		Node ptr = head;
+		int index = -1;
+
+		if (index > linkLenght(ptr)-1 || index < 0) {
+			System.out.println("Index doesn't exist");
+			return ptr;
+		}
+		else {
+			for (int i = 0; i < index; i++){
+				ptr = ptr.next;
+			}
+			return ptr;
+		}
+	}
+
 	static Node linkDelete(Node head, int key) {
 
 		Node ptr = head;
@@ -140,18 +157,29 @@ class LinkedList1 {
 
 		print(head);
 
+		System.out.println();
+
 		head = addNodeAtStart(head, 0);
 		print(head);
 
+		System.out.println();
+
 		System.out.println("Length is "+linkLenght(head));
+		System.out.println();
 
 		linkSearch(head);
+		System.out.println();
 
-		head = linkDelete(head, 0);
+		head =  linkDelete(head, 0);
+		System.out.println();
 
 		print(head);
+		System.out.println();
 
 		linkSearch(head);
-		
+		System.out.println();
+
+		System.out.println(linkShare(head).data);
+
 	}
 }
