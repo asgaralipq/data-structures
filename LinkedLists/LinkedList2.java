@@ -149,6 +149,33 @@ class LinkedList2{
         }
     }
 
+    static NodeDLL linkReturn(NodeDLL head){
+        NodeDLL ptr = head;
+        int index = 0;
+
+        if(index == 0)
+            return ptr;
+
+        for(int i = 0; i<index; i++){
+            ptr = ptr.next;
+        }
+
+        return ptr;
+    }
+
+    static NodeDLL linkCircular(NodeDLL head){
+        NodeDLL ptr = head;
+        
+        while(ptr.next != null){
+            ptr = ptr.next;
+        }
+
+        ptr.next = head;
+        head.prev = ptr;
+
+        return head;
+    }
+
     public static void main(String[] args){
 
         // NodeDLL head = null;
@@ -171,6 +198,8 @@ class LinkedList2{
         printReverse(head);
 
         head = addNodeAtBegin(head);
+        System.out.println("Head"+head.data);
+
         // System.out.println(first.data);
         print(head);
         printReverse(head);
@@ -183,7 +212,17 @@ class LinkedList2{
 
 		head = linkDelete(head,0);
 
+        System.out.println("Head"+head.data);
+
+
         print(head);
         printReverse(head);
+        // System.out.println("Head"+head.data);
+        // printReverse(head);
+
+		System.out.println(linkReturn(head).data);
+
+        linkCircular(head);
+        print(head);
     }
 }
