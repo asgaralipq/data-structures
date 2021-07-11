@@ -194,7 +194,7 @@ class LinkedList1 {
 		Node second = new Node();
 		Node third = new Node();
 		first.createNewNode(1);
-		second.createNewNode(4);
+		second.createNewNode(2);
 		third.createNewNode(3);
 
 		Node head = first;
@@ -216,7 +216,7 @@ class LinkedList1 {
 		linkSearch(head);
 		System.out.println();
 
-		head =  linkDelete(head, 0);
+		head =  linkDelete(head, 3);
 		System.out.println();
 
 		print(head);

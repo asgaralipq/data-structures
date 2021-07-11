@@ -86,6 +86,69 @@ class LinkedList2{
         System.out.println("Null");
     }
 
+    static int linkLenght(NodeDLL head) {
+
+		NodeDLL ptr = head;
+		int count = 0;
+		while (ptr != null) {
+			ptr = ptr.next;
+			count++;
+		}
+		return count;
+	}
+
+    static void linkSearch(NodeDLL head) {
+
+		NodeDLL ptr = head;
+		int searchFlag = 0;
+		int searchElement = 6;
+
+		while (ptr != null) {
+			if(ptr.data == searchElement){
+				searchFlag = 1;
+				break;
+			}
+			else{
+				ptr = ptr.next;
+			}
+		}
+
+		if(searchFlag == 0){
+			System.out.println("Not Found");
+		}else{
+			System.out.println("Found");
+		}
+	}
+
+    static NodeDLL linkDelete(NodeDLL head, int key){
+        NodeDLL ptr = head;
+
+        System.out.println("-----"+ptr.data+"-------"+key+"------");
+        if(ptr != null && ptr.data == key){
+            ptr.next.prev = null;
+            head = ptr.next;
+            return head; 
+        }
+        else{
+            while(ptr != null && ptr.data != key){
+                ptr = ptr.next;
+            }
+
+            if(ptr == null)
+                return head;
+
+            if(ptr.next == null){
+                ptr.prev.next = ptr.next;
+                return head;
+            }
+
+            ptr.next.prev = ptr.prev;
+            ptr.prev.next = ptr.next;
+
+            return head;
+        }
+    }
+
     public static void main(String[] args){
 
         // NodeDLL head = null;
@@ -109,6 +172,17 @@ class LinkedList2{
 
         head = addNodeAtBegin(head);
         // System.out.println(first.data);
+        print(head);
+        printReverse(head);
+
+        System.out.println("Length is "+linkLenght(head));
+        System.out.println();
+
+		linkSearch(head);
+        System.out.println();
+
+		head = linkDelete(head,0);
+
         print(head);
         printReverse(head);
     }
