@@ -233,9 +233,9 @@ class LinkedList1 {
 		System.out.println();
 		linkMinMax(head);
 
-		System.out.println();
-		head = linkCircular(head);
-		print(head);
+		// System.out.println();
+		// head = linkCircular(head);
+		// print(head);
 
 	}
 }
