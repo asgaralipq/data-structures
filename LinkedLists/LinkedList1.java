@@ -175,6 +175,18 @@ class LinkedList1 {
 		return head;
 	}
 
+	static Node linkCircular(Node head){
+
+		Node ptr = head;
+
+		while(ptr.next != null){
+			ptr = ptr.next;
+		}
+		ptr.next = head;
+
+		return head;
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
@@ -220,6 +232,10 @@ class LinkedList1 {
 
 		System.out.println();
 		linkMinMax(head);
+
+		System.out.println();
+		head = linkCircular(head);
+		print(head);
 
 	}
 }
