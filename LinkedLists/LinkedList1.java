@@ -90,6 +90,26 @@ class LinkedList1 {
 		System.out.println("Count is "+count);
 	}
 
+	static void linkMinMax(Node head){
+		Node ptr = head;
+		int min = ptr.data;
+		int max = ptr.data;
+
+		while(ptr != null){
+			if(ptr.data < min){
+				min = ptr.data;
+			}
+
+			if(ptr.data > max){
+				max = ptr.data;
+			}
+
+			ptr = ptr.next;
+		}
+
+		System.out.println("Min is: "+min+" Max is: "+max);
+	}
+
 	static Node linkDelete(Node head, int key) {
 
 		Node ptr = head;
@@ -197,6 +217,9 @@ class LinkedList1 {
 
 		System.out.println();
 		linkCount(head);
+
+		System.out.println();
+		linkMinMax(head);
 
 	}
 }
