@@ -76,6 +76,20 @@ class LinkedList1 {
 		}
 	}
 
+	static void linkCount(Node head){
+		Node ptr = head;
+		int count = 0;
+		int countElement = 2;
+
+		while(ptr != null){
+			if(countElement == ptr.data){
+				count++;
+			}
+			ptr = ptr.next;
+		}
+		System.out.println("Count is "+count);
+	}
+
 	static Node linkDelete(Node head, int key) {
 
 		Node ptr = head;
@@ -148,7 +162,7 @@ class LinkedList1 {
 		Node second = new Node();
 		Node third = new Node();
 		first.createNewNode(1);
-		second.createNewNode(2);
+		second.createNewNode(4);
 		third.createNewNode(3);
 
 		Node head = first;
@@ -180,6 +194,9 @@ class LinkedList1 {
 		System.out.println();
 
 		System.out.println(linkShare(head).data);
+
+		System.out.println();
+		linkCount(head);
 
 	}
 }
