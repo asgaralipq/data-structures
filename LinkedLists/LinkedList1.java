@@ -76,6 +76,23 @@ class LinkedList1 {
 		}
 	}
 
+	static Node linkShareEnd(Node head) {
+
+		Node ptr = head;
+		int index = 3;
+
+		if (index > linkLenght(ptr)-1 || index < 0) {
+			System.out.println("Index doesn't exist");
+			return ptr;
+		}
+		else {
+			for (int i = linkLenght(ptr); i > index; i--){
+				ptr = ptr.next;
+			}
+			return ptr;
+		}
+	}
+
 	static void linkCount(Node head){
 		Node ptr = head;
 		int count = 0;
@@ -187,26 +204,59 @@ class LinkedList1 {
 		return head;
 	}
 
+	static boolean linkPaldindrome(Node head){
+		Node ptr = head;
+		Node ptr2 = head;
+		boolean checkPalin = false;
+		int i = 0;
+
+		Stack<Integer> stack = new Stack<Integer>(); 
+
+		while(ptr != null){
+			stack.push(ptr.data);
+			ptr = ptr.next;
+		}
+
+		while(ptr2 != null){
+			i = stack.pop();
+			if(ptr2.data == i){
+				checkPalin = true;
+			}else{
+				checkPalin = false;
+				break;
+			}
+			ptr2 = ptr2.next;
+		}
+
+		return checkPalin;
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
 		Node first = new Node();
 		Node second = new Node();
 		Node third = new Node();
+		Node fourth = new Node();
+		Node fifth = new Node();
 		first.createNewNode(1);
 		second.createNewNode(2);
-		third.createNewNode(3);
+		third.createNewNode(1);
+		fourth.createNewNode(2);
+		fifth.createNewNode(1);
 
 		Node head = first;
 		first.next = second;
 		second.next = third;
+		third.next = fourth;
+		fourth.next = fifth;
 
 		print(head);
 
 		System.out.println();
 
-		head = addNodeAtStart(head, 0);
-		print(head);
+		// head = addNodeAtStart(head, 0);
+		// print(head);
 
 		System.out.println();
 
@@ -216,8 +266,8 @@ class LinkedList1 {
 		linkSearch(head);
 		System.out.println();
 
-		head =  linkDelete(head, 3);
-		System.out.println();
+		// head =  linkDelete(head, 3);
+		// System.out.println();
 
 		print(head);
 		System.out.println();
@@ -225,7 +275,7 @@ class LinkedList1 {
 		linkSearch(head);
 		System.out.println();
 
-		System.out.println(linkShare(head).data);
+		// System.out.println(linkShare(head).data);
 
 		System.out.println();
 		linkCount(head);
@@ -233,7 +283,12 @@ class LinkedList1 {
 		System.out.println();
 		linkMinMax(head);
 
-		// System.out.println();
+		System.out.println();
+		print(head);
+
+		System.out.println("Is it palindrome: "+linkPaldindrome(head));
+
+		// System.out.println(linkShareEnd(head).data);
 		// head = linkCircular(head);
 		// print(head);
 

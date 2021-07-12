@@ -162,6 +162,7 @@ class LinkedList2{
 
         return ptr;
     }
+    
 
     static NodeDLL linkCircular(NodeDLL head){
         NodeDLL ptr = head;
