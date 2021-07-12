@@ -231,6 +231,44 @@ class LinkedList1 {
 		return checkPalin;
 	}
 
+	static Node linkReverseIterative(Node head){
+		Node next, prev = null;
+		Node current = head;
+
+		while(current != null){
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+		return head;
+	}
+
+	static Node linkReverseRecursion(Node head){
+		Node first, rest = null;
+		Node ptr = head;
+
+		if(ptr == null){
+			return ptr;
+		}
+
+		first = ptr;
+		rest = first.next;
+
+		if(rest == null){
+			return ptr;
+		}
+
+		ptr = linkReverseRecursion(rest);
+
+		rest.next = first;
+		first.next = null;
+
+		return ptr;
+
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
@@ -241,9 +279,9 @@ class LinkedList1 {
 		Node fifth = new Node();
 		first.createNewNode(1);
 		second.createNewNode(2);
-		third.createNewNode(1);
-		fourth.createNewNode(2);
-		fifth.createNewNode(1);
+		third.createNewNode(3);
+		fourth.createNewNode(4);
+		fifth.createNewNode(5);
 
 		Node head = first;
 		first.next = second;
@@ -291,6 +329,10 @@ class LinkedList1 {
 		// System.out.println(linkShareEnd(head).data);
 		// head = linkCircular(head);
 		// print(head);
+
+		// head = linkReverseIterative(head);
+		head = linkReverseRecursion(head);
+		print(head);
 
 	}
 }
