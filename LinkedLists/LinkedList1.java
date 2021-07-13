@@ -344,23 +344,59 @@ class LinkedList1 {
 		return head;
 	}
 
+	static Node removeDuplicates(Node head){
+		Node ptr = head;
+		Node next = null;
+
+		while(ptr.next != null){
+			if(ptr.data == ptr.next.data){
+				next = ptr.next.next;
+				ptr.next.next = null;
+				ptr.next = next;
+			}
+			if(ptr.next != null){
+				if(ptr.next.data != ptr.data)
+					ptr = ptr.next;
+			}
+		}
+		return head;
+	}
+
+	static Node removeDuplicates1(Node head){
+		Node ptr = head;
+		
+		while(ptr != null){
+			Node temp = ptr;
+
+			while(temp != null && temp.data == ptr.data){
+				temp = temp.next;
+			}
+		ptr.next = temp;
+		ptr = ptr.next;	
+		}
+		return head;
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
 		Node first = new Node();
 		Node second = new Node();
+		Node second1 = new Node();
 		Node third = new Node();
 		Node fourth = new Node();
 		Node fifth = new Node();
 		first.createNewNode(1);
 		second.createNewNode(2);
-		third.createNewNode(3);
-		fourth.createNewNode(4);
+		second1.createNewNode(3);
+		third.createNewNode(4);
+		fourth.createNewNode(5);
 		fifth.createNewNode(5);
 
 		Node head = first;
 		first.next = second;
-		second.next = third;
+		second.next = second1;
+		second1.next = third;
 		third.next = fourth;
 		fourth.next = fifth;
 		// fifth.next = second;
@@ -410,14 +446,16 @@ class LinkedList1 {
 		// head = linkReverseIterative(head);
 		// head = linkReverseRecursion(head);
 		// head = linkReverseGroup(head, 3);
-		// System.out.println("Test");
-		// print(head);
+		print(head);
 
 		// head = deleteList(head);
 		// System.out.println("Loop"+linkLoop(head));
 
-		System.out.println("Loop Length"+linkLoopLength(head));
+		// System.out.println("Loop Length"+linkLoopLength(head));
 		// print(head);
+
+		head = removeDuplicates(head);
+		print(head);
 
 	}
 }
