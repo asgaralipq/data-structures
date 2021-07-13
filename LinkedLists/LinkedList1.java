@@ -245,6 +245,77 @@ class LinkedList1 {
 		return head;
 	}
 
+	static Node linkReverseGroup(Node head, int n){
+
+		if(head == null){
+			return null;
+		}
+		Node next = null , prev = null;
+		Node current = head;
+		int count = 0;
+
+		while(count < n && current != null){
+			
+				next = current.next;
+				current.next = prev;
+				prev = current;
+				current = next;
+				count++;
+		}
+
+		if(next!=null){
+			head.next = linkReverseGroup(next, n);
+		}
+		return prev;
+	}
+
+	static boolean linkLoop(Node head){
+
+		if(head == null){
+			return false;
+		}
+		else{
+			while(head != null){
+				
+				if(head.data == -1){
+					return true;
+				}
+				else{
+					head.data = -1;
+					head = head.next;
+				}
+			}
+			return false;
+		}
+	}
+
+	static int countNodes(Node head){
+		int count = 1;
+		Node temp = head;
+
+		while(head.next != temp){
+			count++;
+			head = head.next;
+		}
+
+		return count;
+	}
+
+	static int linkLoopLength(Node head){
+		Node fastPtr = head;
+		Node slowPtr = head;
+
+		while(slowPtr != null && fastPtr != null && fastPtr.next != null){
+			slowPtr = slowPtr.next;
+			fastPtr = fastPtr.next.next;
+
+			if(slowPtr == fastPtr){
+				return countNodes(slowPtr);
+			}
+		}
+		return 0;
+	}
+
 	static Node linkReverseRecursion(Node head){
 		Node first, rest = null;
 		Node ptr = head;
@@ -266,7 +337,11 @@ class LinkedList1 {
 		first.next = null;
 
 		return ptr;
+	}
 
+	static Node deleteList(Node head){
+		head = null;
+		return head;
 	}
 
 	public static void main(String args[]) {
@@ -288,51 +363,61 @@ class LinkedList1 {
 		second.next = third;
 		third.next = fourth;
 		fourth.next = fifth;
+		// fifth.next = second;
 
-		print(head);
 
-		System.out.println();
+		// print(head);
+
+		// System.out.println();
 
 		// head = addNodeAtStart(head, 0);
 		// print(head);
 
-		System.out.println();
+		// System.out.println();
 
-		System.out.println("Length is "+linkLenght(head));
-		System.out.println();
+		// System.out.println("Length is "+linkLenght(head));
+		// System.out.println();
 
-		linkSearch(head);
-		System.out.println();
+		// linkSearch(head);
+		// System.out.println();
 
 		// head =  linkDelete(head, 3);
 		// System.out.println();
 
-		print(head);
-		System.out.println();
+		// print(head);
+		// System.out.println();
 
-		linkSearch(head);
-		System.out.println();
+		// linkSearch(head);
+		// System.out.println();
 
 		// System.out.println(linkShare(head).data);
 
-		System.out.println();
-		linkCount(head);
+		// System.out.println();
+		// linkCount(head);
 
-		System.out.println();
-		linkMinMax(head);
+		// System.out.println();
+		// linkMinMax(head);
 
-		System.out.println();
-		print(head);
+		// System.out.println();
+		// print(head);
 
-		System.out.println("Is it palindrome: "+linkPaldindrome(head));
+		// System.out.println("Is it palindrome: "+linkPaldindrome(head));
 
 		// System.out.println(linkShareEnd(head).data);
 		// head = linkCircular(head);
 		// print(head);
 
 		// head = linkReverseIterative(head);
-		head = linkReverseRecursion(head);
-		print(head);
+		// head = linkReverseRecursion(head);
+		// head = linkReverseGroup(head, 3);
+		// System.out.println("Test");
+		// print(head);
+
+		// head = deleteList(head);
+		// System.out.println("Loop"+linkLoop(head));
+
+		System.out.println("Loop Length"+linkLoopLength(head));
+		// print(head);
 
 	}
 }
