@@ -419,6 +419,79 @@ class LinkedList1 {
 		return ptr;
 	}
 
+	static int middleOfLinkedList(Node head){
+		Node slowPNode = head;
+		Node fastPNode = head;
+
+		while(fastPNode != null && fastPNode.next != null){
+			fastPNode = fastPNode.next.next;
+			slowPNode = slowPNode.next;
+		}
+
+		return slowPNode.data;
+	}
+
+	static boolean isCircular(Node head){
+		Node ptr = head.next;
+
+		while(ptr != null && ptr!= head)
+			ptr = ptr.next;
+
+		return (ptr == head);
+
+	}
+
+	static Node split(Node head){
+		Node slowPNode = head;
+		Node fastPNode = head;
+		Node newHead = null;
+
+		while(fastPNode != null && fastPNode.next != null){
+			fastPNode = fastPNode.next.next;
+			slowPNode = slowPNode.next;
+		}
+		fastPNode.next = slowPNode.next;
+		slowPNode.next = head;
+		// slowPNode.next = null;
+		// print(fastPNode);
+
+		return fastPNode;
+	}
+
+
+	// static Node addLinkedList(Node head, Node head1){
+	// 	Node ptr = head;
+	// 	Node ptr2 = head2;
+	// }
+
+	// static Node addOnetoList(Node head){
+		
+	// 	int carry = 0;
+	// 	Node ptr = linkReverseIterative(head);
+	// 	print(ptr);
+	// 	int sum = 0;
+	// 	Node temp = null;
+
+	// 	while(ptr != null){
+			
+	// 		sum = ptr.data + carry;
+
+	// 		if (sum >= 10){
+	// 			carry = 1;
+	// 		}
+	// 		sum = sum % 10;
+
+	// 		ptr.data = sum;
+
+	// 		temp = head;
+	// 		ptr = ptr.next;
+	// 	}
+	// 	if(carry > 0){
+	// 		Node node = new Node();
+	// 		node.createNewNode(carry);
+	// 	}
+	// }
+
 	public static void main(String args[]) {
 
 		// Node head = null;
@@ -441,7 +514,7 @@ class LinkedList1 {
 		second1.next = third;
 		third.next = fourth;
 		fourth.next = fifth;
-		// fifth.next = second;
+		fifth.next = first;
 
 
 		// print(head);
@@ -488,7 +561,7 @@ class LinkedList1 {
 		// head = linkReverseIterative(head);
 		// head = linkReverseRecursion(head);
 		// head = linkReverseGroup(head, 3);
-		print(head);
+		// print(head);
 
 		// head = deleteList(head);
 		// System.out.println("Loop"+linkLoop(head));
@@ -497,7 +570,16 @@ class LinkedList1 {
 		// print(head);
 
 		// head = removeUnsortedDuplicates(head);
-		head = lastToFirst(head);
+		// head = lastToFirst(head);
+		// head = addOnetoList(head);
+		// System.out.println("Middle"+middleOfLinkedList(head));
+		// System.out.println("What Circular???? "+isCircular(head));
+		// print(head);
+
+		Node head1 = split(head);
+
+		print(head1);
+
 		print(head);
 
 	
