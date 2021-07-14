@@ -377,6 +377,28 @@ class LinkedList1 {
 		return head;
 	}
 
+	static Node removeUnsortedDuplicates(Node head){
+		Node ptr = head, ptr1 = null;
+		// Node prev = null, next = null;
+
+		while(ptr != null && ptr.next != null){
+			ptr1 = ptr;
+
+
+			while(ptr1.next != null){
+				if(ptr.data == ptr1.next.data){
+					ptr1.next = ptr1.next.next;
+				}
+				else{
+					ptr1 = ptr1.next;
+				}
+			}
+			ptr = ptr.next;
+		}
+		ptr = head;
+		return ptr;
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
@@ -386,12 +408,12 @@ class LinkedList1 {
 		Node third = new Node();
 		Node fourth = new Node();
 		Node fifth = new Node();
-		first.createNewNode(1);
-		second.createNewNode(2);
+		first.createNewNode(5);
+		second.createNewNode(5);
 		second1.createNewNode(3);
 		third.createNewNode(4);
-		fourth.createNewNode(5);
-		fifth.createNewNode(5);
+		fourth.createNewNode(2);
+		fifth.createNewNode(2);
 
 		Node head = first;
 		first.next = second;
@@ -454,7 +476,7 @@ class LinkedList1 {
 		// System.out.println("Loop Length"+linkLoopLength(head));
 		// print(head);
 
-		head = removeDuplicates(head);
+		head = removeUnsortedDuplicates(head);
 		print(head);
 
 	}
