@@ -59,6 +59,19 @@ public class array3 {
         return sum-sum1;
     }
 
+    static int countSumCheck(int arr[]){
+        int sum = 6;
+        int count = 0;
+        for(int i = 0; i<arr.length; i++){
+            for(int j = i+1; j<arr.length; j++){
+                    if(arr[i]+arr[j]==sum){
+                        count++;
+                    }
+                }
+            }
+        return count;
+    }
+
     static int[] intersect(int arr1[], int arr2[]){
         int[] inter = new int[10];
         int n = 0;
@@ -117,7 +130,9 @@ public class array3 {
         //     System.out.println(arrR[i]);
         // }
 
-        System.out.println("Remaining number is "+findMissingNumber(array1));
+        // System.out.println("Remaining number is "+findMissingNumber(array1));
+
+        System.out.println("Count Sum "+countSumCheck(array1));
 
     }
 }
