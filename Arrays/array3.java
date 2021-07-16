@@ -30,6 +30,22 @@ public class array3 {
         return inter;
     }
 
+    static int[] rotate(int arr1[]){
+
+        // System.out.println(arr1.length-1);
+        int x = arr1[arr1.length-1];
+
+        for(int i = arr1.length - 1; i > 0; i--){
+            // int n = arr1[i];
+            arr1[i] = arr1[i - 1];
+        }
+
+        arr1[0] = x;
+
+        return arr1;
+
+    }
+
     static int[] intersect(int arr1[], int arr2[]){
         int[] inter = new int[10];
         int n = 0;
@@ -58,28 +74,36 @@ public class array3 {
             array1[i] = sc.nextInt();
         }
         
-        System.out.println("Array 2");
+        // System.out.println("Array 2");
 
-        n = sc.nextInt();
+        // n = sc.nextInt();
 
-        int[] array2 = new int[n];
+        // int[] array2 = new int[n];
 
-        for(int i = 0; i < n; i++){
-            array2[i] = sc.nextInt();
+        // for(int i = 0; i < n; i++){
+        //     array2[i] = sc.nextInt();
+        // }
+
+        // int[] array3 = intersect(array1, array2); 
+
+        // System.out.println();
+        // for(int i = 0; i < array3.length; i++){
+        //     System.out.println(array3[i]);
+        // }
+
+        // int[] array4 = union(array1, array2); 
+
+        // System.out.println();
+        // for(int i = 0; i < array4.length; i++){
+        //     System.out.println(array4[i]);
+        // }
+
+        int arrR[] = rotate(array1);
+
+        for (int i = 0; i < arrR.length; i++){
+            System.out.println(arrR[i]);
         }
 
-        int[] array3 = intersect(array1, array2); 
 
-        System.out.println();
-        for(int i = 0; i < array3.length; i++){
-            System.out.println(array3[i]);
-        }
-
-        int[] array4 = union(array1, array2); 
-
-        System.out.println();
-        for(int i = 0; i < array4.length; i++){
-            System.out.println(array4[i]);
-        }
     }
 }
