@@ -46,6 +46,19 @@ public class array3 {
 
     }
 
+    static int findMissingNumber(int arr[]){
+        int n = arr.length;
+        int m = n+1;
+        int sum = (m*(m+1))/2;
+        int sum1 = 0;
+
+        for(int i = 0; i<n; i++){
+            sum1 = sum1 + arr[i];
+        }
+
+        return sum-sum1;
+    }
+
     static int[] intersect(int arr1[], int arr2[]){
         int[] inter = new int[10];
         int n = 0;
@@ -98,12 +111,13 @@ public class array3 {
         //     System.out.println(array4[i]);
         // }
 
-        int arrR[] = rotate(array1);
+        // int arrR[] = rotate(array1);
 
-        for (int i = 0; i < arrR.length; i++){
-            System.out.println(arrR[i]);
-        }
+        // for (int i = 0; i < arrR.length; i++){
+        //     System.out.println(arrR[i]);
+        // }
 
+        System.out.println("Remaining number is "+findMissingNumber(array1));
 
     }
 }
