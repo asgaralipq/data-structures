@@ -88,11 +88,21 @@ public class array3 {
         return inter;
     }
 
-    // static int[] duplicates(int arr[]){
-    //     for(int i = 0; i<arr.length; i++){
-    //         for(int j = i+1; i<)
-    //     }
-    // }
+    static int[] duplicates(int arr[]){
+        int[] arr1 = new int[10];
+        int n = 0;
+        for(int i = 0; i<arr.length; i++){
+            for(int j = i+1; j < arr.length; j++){
+
+                if(arr[i] == arr[j]){
+                    arr1[n++] = arr[i];
+                    break;
+                }
+            }
+        }
+
+        return arr1;
+    }
 
     static void quickSort(int arr[], int start, int end){
 
@@ -180,8 +190,10 @@ public class array3 {
 
         // System.out.println("Count Sum "+countSumCheck(array1));
 
-        quickSort(array1, 0, array1.length - 1);
+        // quickSort(array1, 0, array1.length - 1);
 
-        System.out.println(Arrays.toString(array1));
+        // System.out.println(Arrays.toString(array1));
+
+        System.out.println(Arrays.toString(duplicates(array1)));
     }
 }
