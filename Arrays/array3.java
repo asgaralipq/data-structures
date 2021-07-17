@@ -207,6 +207,30 @@ public class array3 {
         
     }
 
+    public static int partitionR(int a[]){
+
+        int j = 0;
+        int pivot = 0;
+
+        for(int i = 0; i < a.length; i++){
+            if(a[i] < pivot){
+                swap(a, i , j);
+                j++;
+            }
+        }
+
+        return j;
+    }
+
+    public static void reArrange(int a[]){
+
+        int p = partitionR(a);
+    
+        for(int n = 0; p < a.length && n < p; p++, n += 2){
+            swap(a, n, p);
+        }
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
@@ -275,6 +299,10 @@ public class array3 {
 
         // System.out.println("Duplicate is "+(duplicatesOnceNotRepeat(array1)));
 
-        largest(array1);
+        // largest(array1);
+
+        reArrange(array1);
+
+        System.out.println(Arrays.toString(array1));
     }
 }
