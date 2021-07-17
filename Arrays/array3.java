@@ -183,6 +183,30 @@ public class array3 {
         return -1;
     }
 
+    public static void largest(int a[]){
+
+        int first,second,third;
+
+        first = second = third = Integer.MIN_VALUE;
+
+        for(int i = 0; i < a.length; i++){
+            if(a[i] > first){
+                third = second;
+                second = first;
+                first = a[i];
+            }
+            else if(a[i] > second){
+                third = second;
+                second = a[i];
+            }
+            else if(a[i] > third){
+                third = a[i];
+            }
+        }
+        System.out.println(first+" "+second+" "+third);
+        
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
@@ -249,6 +273,8 @@ public class array3 {
 
         // System.out.println("Duplicate is "+(duplicatesOnce(array1)));
 
-        System.out.println("Duplicate is "+(duplicatesOnceNotRepeat(array1)));
+        // System.out.println("Duplicate is "+(duplicatesOnceNotRepeat(array1)));
+
+        largest(array1);
     }
 }
