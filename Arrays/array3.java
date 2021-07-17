@@ -88,6 +88,52 @@ public class array3 {
         return inter;
     }
 
+    // static int[] duplicates(int arr[]){
+    //     for(int i = 0; i<arr.length; i++){
+    //         for(int j = i+1; i<)
+    //     }
+    // }
+
+    static void quickSort(int arr[], int start, int end){
+
+
+        if(start >= end){
+            return;
+        }
+
+        int pivot = partition(arr, start, end);
+
+        quickSort(arr, start, pivot - 1);
+
+        quickSort(arr, pivot + 1, end);
+    }
+
+    public static void swap(int arr[], int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static int partition(int arr[], int start, int end){
+
+        int pivot = arr[end];
+
+        int pIndex = start;
+
+        for ( int i = start; i < end; i++ ){
+
+            if(arr[i] <= pivot){
+
+                swap(arr, i, pIndex);
+                pIndex++;
+            }
+        }
+
+        swap(arr, end, pIndex);
+
+        return pIndex;
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
@@ -132,7 +178,10 @@ public class array3 {
 
         // System.out.println("Remaining number is "+findMissingNumber(array1));
 
-        System.out.println("Count Sum "+countSumCheck(array1));
+        // System.out.println("Count Sum "+countSumCheck(array1));
 
+        quickSort(array1, 0, array1.length - 1);
+
+        System.out.println(Arrays.toString(array1));
     }
 }
