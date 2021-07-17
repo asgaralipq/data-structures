@@ -258,6 +258,27 @@ public class array3 {
         System.out.println("Not found");
     }
 
+    public static void maximumSubArray(int arr[]){
+
+        int maxSum = Integer.MIN_VALUE;
+        int currSum = 0;
+
+        for(int i : arr){
+
+            currSum += i;
+
+            if(currSum > maxSum){
+                maxSum = currSum;
+            }
+
+            if(currSum < 0){
+                currSum = 0;
+            }
+        }
+
+        System.out.println(maxSum);
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
@@ -334,6 +355,8 @@ public class array3 {
 
         // countSumPairPrint(array1);
 
-        zeroSum(array1);
+        // zeroSum(array1);
+
+        maximumSubArray(array1);
     }
 }
