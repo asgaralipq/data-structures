@@ -72,6 +72,17 @@ public class array3 {
         return count;
     }
 
+    static void countSumPairPrint(int arr[]){
+        int sum = 6;
+        for(int i = 0; i<arr.length; i++){
+            for(int j = i+1; j<arr.length; j++){
+                    if(arr[i]+arr[j]==sum){
+                        System.out.println(arr[i]+" "+arr[j]);
+                    }
+                }
+            }
+    }
+
     static int[] intersect(int arr1[], int arr2[]){
         int[] inter = new int[10];
         int n = 0;
@@ -231,6 +242,22 @@ public class array3 {
         }
     }
 
+    public static void zeroSum(int arr[]){
+
+        for(int i = 0; i < arr.length; i++){
+            int sum = 0;
+            for(int j = i; j < arr.length; j++){
+                sum = sum + arr[j];
+                // System.out.println(sum+" i "+i+" j "+j);
+                if(sum == 0){
+                    System.out.println("Found");
+                    return;
+                }
+            }
+        }
+        System.out.println("Not found");
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
@@ -301,8 +328,12 @@ public class array3 {
 
         // largest(array1);
 
-        reArrange(array1);
+        // reArrange(array1);
 
-        System.out.println(Arrays.toString(array1));
+        // System.out.println(Arrays.toString(array1));
+
+        // countSumPairPrint(array1);
+
+        zeroSum(array1);
     }
 }
