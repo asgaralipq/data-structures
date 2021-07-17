@@ -152,6 +152,37 @@ public class array3 {
 
     }
 
+    public static int duplicatesOnce(int arr[]){
+
+        for(int i = 0; i < arr.length; i++){
+            for(int j = i+1; j < arr.length; j++){
+                if(arr[i] == arr[j]){
+                    int data = arr[i];
+                    return data;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static int duplicatesOnceNotRepeat(int arr[]){
+
+        int flag = 0;
+        for(int i = 0; i < arr.length; i++){
+            flag = 0;
+            for(int j = 0; j < arr.length; j++){
+                if(arr[i] == arr[j] && i != j){
+                    flag = 1;
+                }
+            }
+            if(flag == 0){
+                int data = arr[i];
+                return data;
+            }
+        }
+        return -1;
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
@@ -164,25 +195,25 @@ public class array3 {
             array1[i] = sc.nextInt();
         }
         
-        System.out.println("Array 2");
+        // System.out.println("Array 2");
 
-        n = sc.nextInt();
+        // n = sc.nextInt();
 
-        int[] array2 = new int[n];
+        // int[] array2 = new int[n];
 
-        for(int i = 0; i < n; i++){
-            array2[i] = sc.nextInt();
-        }
+        // for(int i = 0; i < n; i++){
+        //     array2[i] = sc.nextInt();
+        // }
 
-        System.out.println("Array 3");
+        // System.out.println("Array 3");
 
-        n = sc.nextInt();
+        // n = sc.nextInt();
 
-        int[] array3 = new int[n];
+        // int[] array3 = new int[n];
 
-        for(int i = 0; i < n; i++){
-            array3[i] = sc.nextInt();
-        }
+        // for(int i = 0; i < n; i++){
+        //     array3[i] = sc.nextInt();
+        // }
 
         // int[] array3 = intersect(array1, array2); 
 
@@ -214,6 +245,10 @@ public class array3 {
 
         // System.out.println(Arrays.toString(duplicates(array1)));
 
-        System.out.println("Common of 3 "+Arrays.toString(commonOfThree(array1, array2, array3)));
+        // System.out.println("Common of 3 "+Arrays.toString(commonOfThree(array1, array2, array3)));
+
+        // System.out.println("Duplicate is "+(duplicatesOnce(array1)));
+
+        System.out.println("Duplicate is "+(duplicatesOnceNotRepeat(array1)));
     }
 }
