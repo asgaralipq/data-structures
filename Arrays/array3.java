@@ -223,6 +223,71 @@ public class array3 {
         return maxCount;
     }
 
+    public static void countOccurence(int[] a) 
+    {
+        if(a.length == 0){
+            return;
+        }
+        int count1 = 0, count2 = 0;
+        int number1 = a[0], number2 = a[0];
+        // List<Integer> list = new ArrayList<Integer>();
+
+        for(int i = 0; i < a.length; i++){
+
+            if(number1 == a[i]){
+                count1++;
+            }
+            else if(number2 == a[i]){
+                count2++;
+            }
+            else if(count1 == 0){
+                number1 = a[i];
+                count1 = 1;
+            }
+            else if(count2 == 0){
+                number2 = a[i];
+                count2 = 1;
+            }
+            else {
+                count1--;
+                count2--;
+            }
+        }
+        count1 = 0;
+        count2 = 0;
+
+        for(int i = 0; i < a.length; i++){
+            if(a[i] == number1){
+                count1++;
+            }
+            else if(a[i] == number2){
+                count2++;
+            }
+        }
+        if(count1 > a.length/3){
+            System.out.println(number1);
+        }
+        if(count2 > a.length/3){
+            System.out.println(number2);
+        }
+    }
+
+    public int findMin(int[] a) {
+        int left = 0;
+        int right = a.length - 1;
+        
+        while(a[left] > a[right]){
+            int middle = (left + right) / 2;
+            
+            if(a[middle] >= a[left])
+                left = middle + 1;
+            else
+                right = middle;
+        }
+        
+        return a[left];
+    }
+
     public static void largest(int a[]){
 
         int first,second,third;
@@ -455,6 +520,8 @@ public class array3 {
     
         // maximumProdSubArray(array1);
 
-        subsequence(array1);
+        // subsequence(array1);
+
+        countOccurence(array1);
     }
 }
