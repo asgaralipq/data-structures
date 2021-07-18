@@ -195,6 +195,34 @@ public class array3 {
         return -1;
     }
 
+    public static boolean contains(int a[], int num){
+
+        for(int i: a){
+            if(i == num){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int subsequence(int a[]){
+        int currentCount = 0;
+        int maxCount = 0;
+
+        for(int i : a){
+            int num = i;
+            currentCount = 1;
+            while(contains(a, num+1)){
+                num++;
+                currentCount += 1;
+            }
+            if(currentCount > maxCount){
+                maxCount = currentCount;
+            }
+        }
+        return maxCount;
+    }
+
     public static void largest(int a[]){
 
         int first,second,third;
@@ -280,6 +308,24 @@ public class array3 {
         System.out.println(maxSum);
     }
 
+    public static void maximumProdSubArray(int arr[]){
+
+        int max = arr[0];
+
+        for(int i = 0; i < arr.length; i++){
+            int sum = arr[i];
+            for(int j = i+1; j < arr.length; j++){
+
+                if(sum > max){
+                    max = sum;
+                }
+                sum *= arr[j];
+            }
+        }
+
+        System.out.println(max);
+    }
+
     public static int multiplyF(int fact, int res[], int resSize){
 
         int carry = 0;
@@ -328,14 +374,14 @@ public class array3 {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
-        // System.out.println("Array 1");
+        System.out.println("Array 1");
 
-        // int n = sc.nextInt();
-        // int[] array1 = new int[n];
+        int n = sc.nextInt();
+        int[] array1 = new int[n];
 
-        // for(int i = 0; i < n; i++){
-        //     array1[i] = sc.nextInt();
-        // }
+        for(int i = 0; i < n; i++){
+            array1[i] = sc.nextInt();
+        }
         
         // System.out.println("Array 2");
 
@@ -405,6 +451,10 @@ public class array3 {
 
         // maximumSubArray(array1);
 
-        bigFact(100);
+        // bigFact(100);
+    
+        // maximumProdSubArray(array1);
+
+        subsequence(array1);
     }
 }
