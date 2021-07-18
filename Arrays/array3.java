@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.*;
 
 public class array3 {
@@ -279,17 +280,62 @@ public class array3 {
         System.out.println(maxSum);
     }
 
+    public static int multiplyF(int fact, int res[], int resSize){
+
+        int carry = 0;
+
+        for(int i = 0; i < resSize; i++){
+            
+            int prod = res[i] * fact + carry;
+
+            res[i] = prod % 10;
+            carry = prod / 10;
+            
+        }
+
+        while(carry != 0){
+            res[resSize] = carry % 10;
+            carry = carry / 10;
+            resSize++;
+        }
+
+        return resSize;
+    }
+
+    public static void bigFact(int n){
+        BigInteger fact = BigInteger.valueOf(1);
+        for (int i = 1; i <= n; i++)
+            fact = fact.multiply(BigInteger.valueOf(i));
+        System.out.println(fact);
+    }
+
+    public static void factorial(int n){
+        int res[] = new int[500];
+
+        res[0] = 1;
+        int resSize = 1;
+
+        for(int i=2; i<=n; i++){
+            resSize = multiplyF(i, res, resSize );
+        }
+
+        System.out.println("Factrorial is");
+        for(int i = resSize-1; i >= 0; i--){
+            System.out.print(res[i]);
+        }
+    }
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
 
-        System.out.println("Array 1");
+        // System.out.println("Array 1");
 
-        int n = sc.nextInt();
-        int[] array1 = new int[n];
+        // int n = sc.nextInt();
+        // int[] array1 = new int[n];
 
-        for(int i = 0; i < n; i++){
-            array1[i] = sc.nextInt();
-        }
+        // for(int i = 0; i < n; i++){
+        //     array1[i] = sc.nextInt();
+        // }
         
         // System.out.println("Array 2");
 
@@ -357,6 +403,8 @@ public class array3 {
 
         // zeroSum(array1);
 
-        maximumSubArray(array1);
+        // maximumSubArray(array1);
+
+        bigFact(100);
     }
 }
