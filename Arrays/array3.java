@@ -272,6 +272,84 @@ public class array3 {
         }
     }
 
+
+    public int maxProfit3(int[] prices) {
+        int hold1 = Integer.MIN_VALUE, hold2 = Integer.MIN_VALUE;
+        int release1 = 0, release2 = 0;
+        
+        for(int i : prices){
+            release2 = Math.max(release2, hold2+i);
+            hold2 = Math.max(hold2, release1-i);
+            release1 = Math.max(release1, hold1+i);
+            hold1 = Math.max(hold1, -i);
+        }
+        return release2;
+    }
+
+    public int maxProfit2(int[] prices) {
+        int profit = 0;
+        
+        for(int i = 1; i < prices.length; i++)
+            profit += Math.max(0, prices[i] - prices[i-1]);
+        
+        return profit;
+    }
+    
+
+    public int maxProfit1(int[] prices) {
+        int release = 0;
+        int hold = Integer.MIN_VALUE;
+        
+        for(int i : prices){
+            release = Math.max(release,hold+i);
+            hold = Math.max(hold, -i);
+        }
+        
+        return release;
+    }
+
+    public static int findDuplicate(int[] nums){
+        int count;
+        int repeat;
+        for(int i : nums){
+            count = 0;
+            repeat = i;
+            for(int j = 0; j < nums.length; j++){
+                if(repeat == nums[j]){
+                    count++;
+                }
+                if(count == 2){
+                    return repeat;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static String isSubset( int a1[], int a2[], int n, int m) {
+        int y = 0;
+        int j;
+        for(int i = 0; i < m; i++){
+            for(j = 0; j < n; j++){
+                System.out.println("a2[i] "+a2[i]+" a1[j] "+a1[j]);
+                if(a2[i] == a1[j]){
+                    y = 1;
+                    break;
+                }
+            }
+            if(j == n){
+                y = 0;
+                break;
+            }
+        }
+        if(y == 1){
+            return "Yes";
+        }else{
+            return "No";
+        }
+            
+        }
+
     public int findMin(int[] a) {
         int left = 0;
         int right = a.length - 1;
@@ -448,15 +526,15 @@ public class array3 {
             array1[i] = sc.nextInt();
         }
         
-        // System.out.println("Array 2");
+        System.out.println("Array 2");
 
-        // n = sc.nextInt();
+        n = sc.nextInt();
 
-        // int[] array2 = new int[n];
+        int[] array2 = new int[n];
 
-        // for(int i = 0; i < n; i++){
-        //     array2[i] = sc.nextInt();
-        // }
+        for(int i = 0; i < n; i++){
+            array2[i] = sc.nextInt();
+        }
 
         // System.out.println("Array 3");
 
@@ -522,6 +600,10 @@ public class array3 {
 
         // subsequence(array1);
 
-        countOccurence(array1);
+        // countOccurence(array1);
+
+        // findDuplicate(array1);
+
+        System.out.println(isSubset(array1, array2, array1.length, array2.length));
     }
 }
