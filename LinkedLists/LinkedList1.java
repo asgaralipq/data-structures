@@ -9,6 +9,10 @@ class Node {
 		this.next = null;
 	}
 
+	Node(int d){
+		this.data = d;
+		this.next = null;
+	}
 }
 
 class LinkedList1 {
@@ -23,6 +27,17 @@ class LinkedList1 {
 			ptr = ptr.next;
 		}
 		System.out.print("Null");
+	}
+
+	static void printC(Node head) {
+
+		Node ptr = head;
+		Node temp = ptr;
+		do {
+			System.out.print(ptr.data + "->");
+			ptr = ptr.next;
+		} while (ptr != temp);
+		System.out.println(ptr.data);
 	}
 
 	static int linkLenght(Node head) {
@@ -80,7 +95,8 @@ class LinkedList1 {
 
 		Node ptr = head;
 		int index = 3;
-
+		// System.out.println("Index doesn't exist "+(linkLenght(ptr)-1));
+		print(head);
 		if (index > linkLenght(ptr)-1 || index < 0) {
 			System.out.println("Index doesn't exist");
 			return ptr;
@@ -161,8 +177,8 @@ class LinkedList1 {
 	static Node addNodeAtEnd(Node head, int data) {
 
 		Node current = head;
-		Node node = new Node();
-		node.createNewNode(data);
+		Node node = new Node(data);
+		// node.createNewNode(data);
 
 		if (current == null) {
 			head = node;
@@ -179,8 +195,8 @@ class LinkedList1 {
 	static Node addNodeAtStart(Node head, int data) {
 
 		Node current = head;
-		Node node = new Node();
-		node.createNewNode(data);
+		Node node = new Node(data);
+		// node.createNewNode(data);
 
 		if (current == null) {
 			head = node;
@@ -248,8 +264,9 @@ class LinkedList1 {
 	static Node linkReverseGroup(Node head, int n){
 
 		if(head == null){
-			return null;
+			return head;
 		}
+
 		Node next = null , prev = null;
 		Node current = head;
 		int count = 0;
@@ -344,6 +361,7 @@ class LinkedList1 {
 		return head;
 	}
 
+	//This function works
 	static Node removeDuplicates(Node head){
 		Node ptr = head;
 		Node next = null;
@@ -362,6 +380,8 @@ class LinkedList1 {
 		return head;
 	}
 
+
+	//Don't know why I wrote this
 	static Node removeDuplicates1(Node head){
 		Node ptr = head;
 		
@@ -369,6 +389,7 @@ class LinkedList1 {
 			Node temp = ptr;
 
 			while(temp != null && temp.data == ptr.data){
+				System.out.println("Here data found "+temp.data);
 				temp = temp.next;
 			}
 		ptr.next = temp;
@@ -377,13 +398,14 @@ class LinkedList1 {
 		return head;
 	}
 
+
 	static Node removeUnsortedDuplicates(Node head){
+
 		Node ptr = head, ptr1 = null;
 		// Node prev = null, next = null;
 
 		while(ptr != null && ptr.next != null){
 			ptr1 = ptr;
-
 
 			while(ptr1.next != null){
 				if(ptr.data == ptr1.next.data){
@@ -441,21 +463,34 @@ class LinkedList1 {
 
 	}
 
-	static Node split(Node head){
+	static void split(Node head){
 		Node slowPNode = head;
 		Node fastPNode = head;
-		Node newHead = null;
+		// Node newHead = null;
+		printC(head);
 
-		while(fastPNode != null && fastPNode.next != null){
+		while(fastPNode.next.next != head && fastPNode.next != head){
 			fastPNode = fastPNode.next.next;
 			slowPNode = slowPNode.next;
 		}
-		fastPNode.next = slowPNode.next;
+
+		if(fastPNode.next == head){
+			fastPNode.next = slowPNode.next;
+		}
+		else{
+			fastPNode = fastPNode.next;
+			fastPNode.next = slowPNode.next;
+		}
+
 		slowPNode.next = head;
 		// slowPNode.next = null;
-		// print(fastPNode);
 
-		return fastPNode;
+		System.out.println();
+		printC(fastPNode);
+
+		System.out.println();
+		printC(head);
+
 	}
 
 
@@ -492,29 +527,67 @@ class LinkedList1 {
 	// 	}
 	// }
 
+	public static Node addTwoNumbers(Node l1, Node l2) {
+		int carry = 0;
+		Node ptr, dummy = new Node(0);
+		ptr = dummy;
+
+		while(l1!=null || l2!=null || carry != 0){
+				if(l1!=null){
+					carry += l1.data;
+					l1 = l1.next;
+				}
+				if(l2!=null){
+					carry += l2.data;
+					l2 = l2.next;
+				}
+				ptr.next = new Node(carry%10);
+				carry = carry/10;
+				ptr = ptr.next;
+		}
+		return dummy.next;
+	}
+
+	public static Node AddOneToList(Node head){
+		int carry = 1;
+		Node ptr, dummy = new Node(0);
+		ptr = dummy;
+
+		while(head != null || carry != 0){
+			if(head != null){
+				carry += head.data;
+				head = head.next;
+			}
+			ptr.next = new Node(carry%10);
+			carry /= 10;
+			ptr = ptr.next;
+		}
+		return dummy.next;
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
-		Node first = new Node();
-		Node second = new Node();
-		Node second1 = new Node();
-		Node third = new Node();
-		Node fourth = new Node();
-		Node fifth = new Node();
-		first.createNewNode(1);
-		second.createNewNode(2);
-		second1.createNewNode(3);
-		third.createNewNode(4);
-		fourth.createNewNode(5);
-		fifth.createNewNode(6);
+		Node first = new Node(3);
+		Node second = new Node(4);
+		Node second1 = new Node(5);
+		// Node third = new Node(4);
+		// Node fourth = new Node(5);
+		// Node fifth = new Node();
+		// first.createNewNode(3);
+		// second.createNewNode(4);
+		// second1.createNewNode(5);
+		// third.createNewNode(4);
+		// fourth.createNewNode(5);
+		// fifth.createNewNode(6);
 
 		Node head = first;
 		first.next = second;
 		second.next = second1;
-		second1.next = third;
-		third.next = fourth;
-		fourth.next = fifth;
-		fifth.next = first;
+		// second1.next = third;
+		// third.next = fourth;
+		// fourth.next = fifth;
+		// fifth.next = first;
 
 
 		// print(head);
@@ -532,7 +605,7 @@ class LinkedList1 {
 		// linkSearch(head);
 		// System.out.println();
 
-		// head =  linkDelete(head, 3);
+		// head =  linkDelete(head, 7);
 		// System.out.println();
 
 		// print(head);
@@ -542,6 +615,8 @@ class LinkedList1 {
 		// System.out.println();
 
 		// System.out.println(linkShare(head).data);
+
+		// System.out.println(linkShareEnd(head).data);
 
 		// System.out.println();
 		// linkCount(head);
@@ -570,17 +645,23 @@ class LinkedList1 {
 		// print(head);
 
 		// head = removeUnsortedDuplicates(head);
+		// head = removeDuplicates1(head);
+		// print(head);
 		// head = lastToFirst(head);
 		// head = addOnetoList(head);
 		// System.out.println("Middle"+middleOfLinkedList(head));
 		// System.out.println("What Circular???? "+isCircular(head));
 		// print(head);
 
-		Node head1 = split(head);
+		// split(head);
 
-		print(head1);
+		// Node dummy = addTwoNumbers(head,third);
+		Node dummy = AddOneToList(head);
 
-		print(head);
+		print(dummy);
+		// print(head1);
+
+		// print(head);
 
 	
 
