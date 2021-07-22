@@ -361,6 +361,35 @@ class LinkedList1 {
 		return head;
 	}
 
+	static Node deleteFromC(Node head, int data){
+		Node ptr = head;
+		
+		if(ptr==null ){
+			return head;
+		}
+		printC(ptr);
+
+		while(ptr.next.data != data ){
+			System.out.println();
+			printC(ptr);
+			ptr = ptr.next;
+			if(ptr == head){
+				System.out.println("Element not found");
+				return head;
+			}
+		}
+
+		if(ptr.next == head){
+			ptr.next = ptr.next.next;
+			head = ptr.next;
+			return head;
+		}else{
+			ptr.next = ptr.next.next;
+			return head;
+		}
+
+	}
+
 	//This function works
 	static Node removeDuplicates(Node head){
 		Node ptr = head;
@@ -565,15 +594,66 @@ class LinkedList1 {
 		return dummy.next;
 	}
 
+	public static Node intersectionLink(Node a, Node b){
+		Node newNode = new Node(0);
+		Node temp = newNode;
+		
+		while(a!=null){
+			Node ptr = b;
+			while(ptr!=null){
+				// System.out.println("Comparing a and b "+a.data+" "+ptr.data);
+				if(a.data == ptr.data){
+					// System.out.println("Adding "+a.data);
+					newNode.next = new Node(a.data);
+					newNode = newNode.next;
+					break;
+				}
+				ptr = ptr.next;
+			}
+			a = a.next;
+		}
+		newNode = temp;
+		return newNode.next;
+	}
+
+	public static int intersectPoint(Node head1, Node head2)
+	{
+         Node a = head1;
+         Node b = head2;
+         while(a != b){
+             a = (a == null)? head1 : a.next;
+             b = (b == null)? head2 : b.next;
+         }
+         if(a == null)
+             return -1;
+        return a.data;
+	}
+
+	public static Node exchangeNode(Node head){
+
+		Node ptr = head;
+		Node prev = ptr;
+		while(ptr.next != null){
+			prev = ptr;
+			ptr = ptr.next;
+		}
+
+		ptr.next = head.next;
+		prev.next = head;
+		prev.next.next = null;
+
+		return ptr;
+	}
+
 	public static void main(String args[]) {
 
 		// Node head = null;
-		Node first = new Node(3);
-		Node second = new Node(4);
-		Node second1 = new Node(5);
-		// Node third = new Node(4);
-		// Node fourth = new Node(5);
-		// Node fifth = new Node();
+		Node first = new Node(1);
+		Node second = new Node(2);
+		Node second1 = new Node(3);
+		Node third = new Node(4);
+		Node fourth = new Node(5);
+		Node fifth = new Node(6);
 		// first.createNewNode(3);
 		// second.createNewNode(4);
 		// second1.createNewNode(5);
@@ -584,10 +664,10 @@ class LinkedList1 {
 		Node head = first;
 		first.next = second;
 		second.next = second1;
-		// second1.next = third;
-		// third.next = fourth;
-		// fourth.next = fifth;
-		// fifth.next = first;
+		second1.next = third;
+		third.next = fourth;
+		fourth.next = fifth;
+		fifth.next = first;
 
 
 		// print(head);
@@ -656,11 +736,17 @@ class LinkedList1 {
 		// split(head);
 
 		// Node dummy = addTwoNumbers(head,third);
-		Node dummy = AddOneToList(head);
+		// Node dummy = AddOneToList(head);
 
-		print(dummy);
+		// Node dummy = intersectionLink(head, third);
+
+		// print(dummy);
+
+		// print(exchangeNode(head));
 		// print(head1);
 
+		head = deleteFromC(head, 7);
+		printC(head);
 		// print(head);
 
 	
