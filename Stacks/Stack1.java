@@ -67,30 +67,29 @@ import java.util.*;
 //     }
 // }
 
-class Stack1{
- 
-    private static void reverseString(String s){
+class Stack1 {
+
+    private static void reverseString(String s) {
         Stack stack = new Stack();
-        for(int i = 0; i < s.length() - 1; i++){
+        for (int i = 0; i < s.length() - 1; i++) {
             stack.push(s.charAt(i));
         }
-        
-        for(int i = 0; i < stack.size() - 1; i++){
+
+        for (int i = 0; i < stack.size() - 1; i++) {
             System.out.print(stack.pop());
         }
     }
 
-    private static java.util.Stack<Integer> recur(java.util.Stack<Integer> s, int n){
+    private static java.util.Stack<Integer> recur(java.util.Stack<Integer> s, int n) {
 
-        if(s.isEmpty()){
+        if (s.isEmpty()) {
             s.push(n);
-        }
-        else{
+        } else {
             int x = s.peek();
 
             s.pop();
 
-            s = recur(s,n);
+            s = recur(s, n);
 
             s.push(x);
         }
@@ -98,20 +97,33 @@ class Stack1{
         return s;
     }
 
-    private static void insertAtEnd(java.util.Stack<Integer> s, int n){
+    private static void insertAtEnd(java.util.Stack<Integer> s, int n) {
 
-        s = recur(s,n);
+        s = recur(s, n);
 
-        while(!s.isEmpty())
+        while (!s.isEmpty())
             System.out.println(s.pop());
 
     }
 
-    private static void reverse(java.util.Stack<Integer> s){
+    private static void reverse(java.util.Stack<Integer> s) {
 
+        if (s.size() > 0) {
+            int x = s.peek();
+            s.pop();
+            reverse(s);
+            s = recur(s, x);
+        }
+        // while(!s.isEmpty())
+        // System.out.println(s.pop());
     }
-    
-    public static void main(java.lang.String[] args){
+
+    private static void printStack(java.util.Stack<Integer> s) {
+        while (!s.isEmpty())
+            System.out.println(s.pop());
+    }
+
+    public static void main(java.lang.String[] args) {
 
         // reverseString("Hello World");
         java.util.Stack<Integer> s = new java.util.Stack<>();
@@ -121,7 +133,10 @@ class Stack1{
         s.push(3);
         s.push(4);
 
-        insertAtEnd(s, 8);
+        // insertAtEnd(s, 8);
+        reverse(s);
+        printStack(s);
 
     }
 }
+
